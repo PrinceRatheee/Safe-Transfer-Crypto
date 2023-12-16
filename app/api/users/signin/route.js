@@ -12,14 +12,14 @@ connect();
 export async function POST(request) {
     try {
         const reqBody = await request.json();
-        console.log("gfsdwygw");
+        // console.log("gfsdwygw");
         const { email, password } = reqBody;
 
-        console.log(reqBody);
+        // console.log(reqBody);
 
         // check if user exists 
         const user = await User.findOne({ email });
-        console.log(user);
+        // console.log(user);
         if (!user) {
             return NextResponse.json({ message: "Invalid Credentials" }, { success:false },{showToast:true})
         }
@@ -30,8 +30,8 @@ export async function POST(request) {
         if (!validPassword) {
             return NextResponse.json({ message: "Invalid Credentials" }, { success:false },{showToast:true})
         }
-        console.log("verify");
-        console.log(user.isVerified);
+        // console.log("verify");
+        // console.log(user.isVerified);
 
         if(!user.isVerified){
             return NextResponse.json(

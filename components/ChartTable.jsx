@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import axios from "axios";
 import { useEffect, useState, useLayoutEffect } from "react";
-// import { Line } from " react-chartjs-2";
+
 import { CircularProgress } from "@mui/material";
 import { chartDays } from "../config/data";
 import { HistoricalChart } from "../config/api";
@@ -29,7 +29,7 @@ const ChartComponent = ({ data }) => {
         <XAxis dataKey="date" />
         <YAxis dataKey="prices" domain={["auto", "auto"]} />
         <Tooltip cursor={false} />
-        {/* <CartesianGrid stroke="#ccc" /> */}
+        
       </LineChart>
     </ResponsiveContainer>
   );
@@ -44,9 +44,9 @@ const ChartTable = ({ coinId },{coinPrice}) => {
   const fetchHistoricData = async () => {
     try {
       const { data } = await axios.get(HistoricalChart(coinId, days, currency));
-      console.log("chart data", data);
+      // console.log("chart data", data);
       setflag(true);
-      console.log(data);
+      // console.log(data);
       let convertedData = data.prices.map((item) => {
         return {
           date: new Date(item[0]).toLocaleDateString,
@@ -54,8 +54,8 @@ const ChartTable = ({ coinId },{coinPrice}) => {
         };
       });
       setHistoricData(convertedData);
-      console.log("coin Price",coinPrice);
-      console.log("hist");
+      // console.log("coin Price",coinPrice);
+      // console.log("hist");
     } catch (error) {
       console.log("error chart");
       console.log(error);
@@ -68,36 +68,9 @@ const ChartTable = ({ coinId },{coinPrice}) => {
 
   // console.log(coin);
   return (
-    // <div className="w-[100%] flex flex-col items-center justify-center mt-[25px] p-[40px]">
-    //   {!historicData ? (
-    //     <CircularProgress style={{ color: "gold" }} size={250} thickness={1} />
-    //   ) : (
-    //     <>
-    //       <Line
-    //         data={{
-    //           labels: historicData.map((coin) => {
-    //             let date = new Date(coin[0]);
-
-    //             let time =
-    //               date.getHours() > 12
-    //                 ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-    //                 : `${date.getHours()}:${date.getMinutes()} AM`;
-
-    //             return days === 1 ? time : date.toLocaleDateString();
-    //           }),
-
-    //           datasets: [{
-    //             data: historicData.map((coin) => coin[1]) ,
-    //             label:`Price (Past ${days} Days) in ${currency}`,
-    //             borderColor:"#EEBC1D"
-    //           }],
-    //         }}
-    //       />
-    //     </>
-    //   )}
-    // </div>
+    
     <>
-    <div className="w-[90vw] h-[90vh] flex flex-col container justify-center">
+    <div className="w-[90vw] h-[90vh] flex flex-col container justify-center mt-[5rem]">
       <ChartComponent data={historicData} />
       <div>
         <h3 className="text-center">Timeframe</h3>

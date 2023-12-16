@@ -24,6 +24,7 @@ export const config = {
     '/trading',
     '/signin',
     '/signup',
-    '/dashboard'
+    '/dashboard',
+    '/transferFunds'
   ],
 }

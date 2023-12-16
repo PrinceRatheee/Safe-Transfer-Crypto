@@ -5,6 +5,42 @@ const FavouriteSchema= new Schema({
     coinId:{
        type: String}
 });
+const HoldingCryptoSchema= new Schema({
+    coinId:{
+       type: String
+    },
+    stakeNo:{
+        type:Number
+    },
+    amount:{
+        type: Number
+    }
+});
+const HistorySchema=new Schema({
+    amount:{
+        type:Number,
+    },
+    transactionType:{
+        type:String,
+    },
+    receiver:{
+        type:String,
+    },
+    date:{
+        type:String,
+    },
+    crypto:{
+        type:String,
+    },
+    transfertype:{
+        type:String,
+    },
+    stakeNo:{
+        type:String
+    }
+    
+
+})
 
 const userSchema=new Schema({
     email:{
@@ -33,8 +69,14 @@ const userSchema=new Schema({
     forgotPasswordTokenExpiry: Date,
     verifyToken: String,
     verifyTokenExpiry: Date,
-    favourites: [FavouriteSchema], // Use the FavouriteSchema for favourites
-
+    favourites: [FavouriteSchema], // Use the FavouriteSchema for favourites    
+    holdings:[HoldingCryptoSchema],
+    balance:{
+        type:Number,
+        default:0,
+        
+    },
+    history:[HistorySchema]
 });
 
 const User = models.User || model('User', userSchema);
